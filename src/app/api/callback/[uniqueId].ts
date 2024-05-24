@@ -3,14 +3,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import mongoose from 'mongoose';
-import User, { IUser } from '../../../models/user';
+import User, { IUser } from '../../../../models/user';
 
 const connectDb = async () => {
   if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(process.env.MONGODB_URI!, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect(process.env.MONGODB_URI!);
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

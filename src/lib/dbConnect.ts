@@ -2,6 +2,12 @@
 
 import mongoose from 'mongoose';
 
+declare global {
+    // allow global var declarations
+    // eslint-disable-next-line no-var
+    var mongoose: any
+}
+
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
@@ -25,7 +31,7 @@ async function dbConnect() {
       useUnifiedTopology: true,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
       return mongoose;
     });
   }
