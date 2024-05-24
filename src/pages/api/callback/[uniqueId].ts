@@ -2,11 +2,16 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import dbConnect from '../lib/dbConnect';
-import User from '../lib/models/user';
+import mongoose from 'mongoose';
+import User from '../../../lib/models/user';
+
+const connectDb = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  return mongoose.connect(process.env.MONGODB_URI!);
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await dbConnect();
+  await connectDb();
 
   const { uniqueId } = req.query;
   const { token } = req.query;

@@ -2,20 +2,20 @@
 
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface IUser extends Document {
-  phoneNumber: string;
+export interface lastFM extends Document {
+  jid: string;
   uniqueId: string;
   lastFmToken?: string;
   lastFmSessionKey?: string;
 }
 
-const userSchema: Schema = new Schema({
-  phoneNumber: { type: String, required: true },
+const lastFM: Schema = new Schema({
+  jid: { type: String, required: true },
   uniqueId: { type: String, required: true },
   lastFmToken: String,
   lastFmSessionKey: String,
 });
 
-const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema);
+const LastFM = mongoose.models.User || mongoose.model<lastFM>('lastfm', lastFM);
 
-export default User;
+export default LastFM;
