@@ -3,7 +3,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import dbConnect from '../lib/dbConnect';
-import User from '../../models/user';
+import User from '../lib/models/user';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
